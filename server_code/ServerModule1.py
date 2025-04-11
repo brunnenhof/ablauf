@@ -4,18 +4,17 @@ from anvil.tables import app_tables
 import anvil.server
 import random
 import string
-
-@anvil.server.callable
-def say_hello(name):
-  print("Hello, " + name + "!")
-  return 42
+from . import my_globs
 
 @anvil.server.callable
 def set_roles(game_id):
-  roles = ['pov', 'ineq', 'fut']
-  regs = ['xy']
-  ro_nbr = [0,1,2]
+  roles = my_globs.roles
+  regs = my_globs.regs
+  ro_nbr = my_globs.ro_nbr
+  re_nbr = my_globs.re_nbr
+  npbp = my_globs.not_played_by_players
   for re in regs:
+    
     for ro_n in ro_nbr:
       app_tables.roles_taken.add_row(game_id=game_id, reg=re, role_nbr = ro_n, role=roles[ro_n], taken=0)
   

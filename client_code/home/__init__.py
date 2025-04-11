@@ -17,7 +17,7 @@ class home(homeTemplate):
   def btn_start_click(self, **event_args):
     game_id = anvil.server.call('generate_id')
     # for all regs being played !!!
-    app_tables.status.add_row(game_id=game_id,closed=0,current_gm=0,current_p=0,reg='nix',role = -1)
+    app_tables.status.add_row(game_id=game_id,closed=0,current_gm=0,current_p=0,reg='nix',roles_avail = 1)
     anvil.server.call('set_roles', game_id)
     alert("Roles set up")
     pass
