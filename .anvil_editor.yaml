@@ -5,7 +5,8 @@ unique_ids:
     theme.css: GEQF4E3DI6EVPCARI7QLPUTURVN7BPZN
   forms:
     home: VZT4XGED6EXZYCVCM64LMQCOLFAWRUNX
-  modules: {}
+  modules:
+    my_globs: '1744362802439276315600343.9049'
   scripts: {}
   server_modules:
     ServerModule1: '174435767322967287144631.29115'

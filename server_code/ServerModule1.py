@@ -12,9 +12,13 @@ def say_hello(name):
 
 @anvil.server.callable
 def generate_id():
-  cid = ''.join(random.choices(string.ascii_uppercase, k=2))
+  cid = ''.join(random.choices(string.ascii_uppercase, k=3))
   a = random.randint(10, 99)
-  d = random.randint(10, 99)
-  cid = cid + '-' + str(d) + '-' + str(a) 
+  cid = cid + '-' + str(a) 
+  while app_tables.status.has_row(q.like(cid)):
+    cid = ''.join(random.choices(string.ascii_uppercase, k=4))
+    a = random.randint(10, 99)
+    d = random.randint(10, 99)
+    cid = cid + '-' + str(d) + '-' + str(a) 
   return f"{cid}"
   
