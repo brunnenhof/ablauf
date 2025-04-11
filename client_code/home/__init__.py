@@ -22,8 +22,16 @@ class home(homeTemplate):
     alert("Roles set up")
     pass
 
-  def show_roles():
-
+  def show_roles(self, cid, reg):
+    rows = app_tables.roles_taken.search(game_id=cid,reg=reg)
+    for row in rows:
+      if row['taken'] == 1:
+        if row['role'] == 'pov':
+          self.rb_pov.visible = False
+        if row['role'] == 'ineq':
+          self.rb_ineq.visible = False
+        if row['role'] == 'fut':
+          self.rb_fut.visible = False
     pass
     
   def btn_join_click(self, **event_args):
@@ -37,6 +45,10 @@ class home(homeTemplate):
       row = app_tables.status.get(closed=0)
       alert(row['game_id'], title="You are joining: ")
       my_globs.my_game_id = row['game_id']
+      #### 
+      #### xy must be replaced with the chosen region
+      #### 
+      self.show_roles(row['game_id'], 'xy')
       self.card_select_reg_role.visible = True
     else:
       alert("The game organizer has not yet started a game. Please wait until he/she does ...")
@@ -46,17 +58,9 @@ class home(homeTemplate):
     alert(self.select_game.selected_value['game_id'], title="You are joining: ")
     game_id_chosen = self.select_game.selected_value['game_id']
     my_globs.my_game_id = game_id_chosen
+    self.show_roles(game_id_chosen, 'xy')
 #    alert(my_globs.my_game_id,"stored globally")
     self.card_select_game_to_join.visible = False
-    rows = app_tables.roles_taken.search(game_id=game_id_chosen,reg='xy')
-    for row in rows:
-      if row['taken'] == 1:
-        if row['role'] == 'pov':
-          self.rb_pov.visible = False
-        if row['role'] == 'ineq':
-          self.rb_ineq.visible = False
-      if row['role'] == 'fut':
-          self.rb_fut.visible = False
    
     self.card_select_reg_role.visible = True
 
@@ -64,12 +68,19 @@ class home(homeTemplate):
     if self.rb_fut.selected: return 2
     if self.rb_pov.selected: return 0
     if self.rb_ineq.selected: return 1
-      
+
+  def all_roles_taken_for_region(self, cid, reg):
+    
+    pass
+
+  def all_roles_taken_for_game(self, **event_args):
+    pass
+    
   def btn_reg_role_chosen_click(self, **event_args):
     """Update status and my_globs"""
     which_reg = 'xy'
     which_role = self.get_role()
-    row = app_tables.roles_taken.get(game_id=my_globs.my_game_id, reg=which_reg, role=which_role)
+    row = app_tables.roles_taken.get(game_id=my_globs.my_game_id, reg=which_reg, role_nbr=which_role)
     row.update(taken = 1)
     ### make personal game_id, save in globals, display
     pass

@@ -14,9 +14,10 @@ def say_hello(name):
 def set_roles(game_id):
   roles = ['pov', 'ineq', 'fut']
   regs = ['xy']
+  ro_nbr = [0,1,2]
   for re in regs:
-    for ro in roles:
-      app_tables.roles_taken.add_row(game_id=game_id, reg=re, role=ro, taken=0)
+    for ro_n in ro_nbr:
+      app_tables.roles_taken.add_row(game_id=game_id, reg=re, role_nbr = ro_n, role=roles[ro_n], taken=0)
   
 @anvil.server.callable
 def generate_id():
