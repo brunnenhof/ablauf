@@ -22,6 +22,10 @@ class home(homeTemplate):
     alert("Roles set up")
     pass
 
+  def show_roles():
+
+    pass
+    
   def btn_join_click(self, **event_args):
     #no_game = app_tables.status.has_row()
     how_many_new = len(app_tables.status.search(closed=0, current_gm =0))
@@ -46,8 +50,14 @@ class home(homeTemplate):
     self.card_select_game_to_join.visible = False
     rows = app_tables.roles_taken.search(game_id=game_id_chosen,reg='xy')
     for row in rows:
-      if row['taken']:
-        if 
+      if row['taken'] == 1:
+        if row['role'] == 'pov':
+          self.rb_pov.visible = False
+        if row['role'] == 'ineq':
+          self.rb_ineq.visible = False
+      if row['role'] == 'fut':
+          self.rb_fut.visible = False
+   
     self.card_select_reg_role.visible = True
 
   def get_role(self, **event_args):
