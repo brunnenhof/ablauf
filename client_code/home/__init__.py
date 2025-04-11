@@ -17,7 +17,9 @@ class home(homeTemplate):
   def btn_start_click(self, **event_args):
     game_id = anvil.server.call('generate_id')
     # for all regs being played !!!
-    app_tables.status.add_row(game_id=game_id,closed=0,current_gm=0,current_p=0,reg='nix',pov=0,ineq=0,fut=0)
+    app_tables.status.add_row(game_id=game_id,closed=0,current_gm=0,current_p=0,reg='nix',role = -1)
+    anvil.server.call('set_roles', game_id)
+    alert("Roles set up")
     pass
 
   def btn_join_click(self, **event_args):
@@ -42,6 +44,10 @@ class home(homeTemplate):
     my_globs.my_game_id = game_id_chosen
 #    alert(my_globs.my_game_id,"stored globally")
     self.card_select_game_to_join.visible = False
+    rows = app_tables.roles_taken.search(game_id=game_id_chosen,reg='xy')
+    for row in rows:
+      if row['taken']:
+        if 
     self.card_select_reg_role.visible = True
 
   def get_role(self, **event_args):
@@ -53,6 +59,7 @@ class home(homeTemplate):
     """Update status and my_globs"""
     which_reg = 'xy'
     which_role = self.get_role()
-    row = app_tables.status.get(game_id=my_globs.my_game_id)
-    row.update()
+    row = app_tables.roles_taken.get(game_id=my_globs.my_game_id, reg=which_reg, role=which_role)
+    row.update(taken = 1)
+    ### make personal game_id, save in globals, display
     pass
