@@ -11,7 +11,8 @@ class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    
+    self.rb_af.text = my_globs.regs[1]
     # Any code you write here will run before the form opens.
 
   def btn_start_click(self, **event_args):
@@ -20,6 +21,18 @@ class home(homeTemplate):
     app_tables.status.add_row(game_id=game_id,closed=0,current_gm=0,current_p=0,reg='nix',roles_avail = 1)
     anvil.server.call('set_roles', game_id)
     alert("Roles set up")
+    pass
+
+  def show_regs(self, cid, reg):
+    rows = app_tables.roles_taken.search(game_id=cid,reg=reg)
+    for row in rows:
+      if row['taken'] == 1:
+        if row['role'] == 'pov':
+          self.rb_pov.visible = False
+        if row['role'] == 'ineq':
+          self.rb_ineq.visible = False
+        if row['role'] == 'fut':
+          self.rb_fut.visible = False
     pass
 
   def show_roles(self, cid, reg):
@@ -93,4 +106,8 @@ class home(homeTemplate):
     row.update(taken = 1)
     self.all_roles_taken_for_game(my_globs.my_game_id, which_reg)
     ### make personal game_id, save in globals, display
+    pass
+
+  def file_loader_1_change(self, file, **event_args):
+    """This method is called when a new file is loaded into this FileLoader"""
     pass

@@ -14,9 +14,12 @@ def set_roles(game_id):
   re_nbr = my_globs.re_nbr
   npbp = my_globs.not_played_by_players
   for re in regs:
-    
-    for ro_n in ro_nbr:
-      app_tables.roles_taken.add_row(game_id=game_id, reg=re, role_nbr = ro_n, role=roles[ro_n], taken=0)
+    if re in npbp:
+      for ro_n in ro_nbr:
+        app_tables.roles_taken.add_row(game_id=game_id, reg=re, role_nbr = ro_n, role=roles[ro_n], taken=2)  # 2 means role is filled by app
+    else:
+      for ro_n in ro_nbr:
+        app_tables.roles_taken.add_row(game_id=game_id, reg=re, role_nbr = ro_n, role=roles[ro_n], taken=0)
   
 @anvil.server.callable
 def generate_id():

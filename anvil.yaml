@@ -1,5 +1,28 @@
 allow_embedding: false
 db_schema:
+  regions:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 110}
+      name: id
+      type: number
+    - admin_ui: {order: 1, width: 200}
+      name: pyidx
+      type: number
+    - admin_ui: {order: 2, width: 115}
+      name: abbr
+      type: string
+    - admin_ui: {order: 3, width: 119}
+      name: long
+      type: string
+    - admin_ui: {order: 4, width: 123}
+      name: col
+      type: string
+    - admin_ui: {order: 5, width: 107}
+      name: colhex
+      type: string
+    server: full
+    title: regions
   roles_taken:
     client: full
     columns:
