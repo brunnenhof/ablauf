@@ -11,6 +11,12 @@ def say_hello(name):
 
 @anvil.server.callable
 def generate_id(name):
+    cid = ''.join(random.choices(string.ascii_uppercase, k=2))
+    a = random.randint(10, 99)
+    d = random.randint(10, 99)
+    cid = cid + '-' + str(d) + '-' + str(a) 
+    # cid = 'TEST'  #  while testing ...
+    return f"{cid}"
   
   print("Hello, " + name + "!")
   return 42
