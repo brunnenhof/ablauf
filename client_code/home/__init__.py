@@ -54,5 +54,5 @@ class home(homeTemplate):
     which_reg = 'xy'
     which_role = self.get_role()
     row = app_tables.status.get(game_id=my_globs.my_game_id)
-    app_tables.status.
+    row.update()
     pass

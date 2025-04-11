@@ -22,15 +22,9 @@ db_schema:
       name: next_gm
       type: number
     - admin_ui: {order: 6, width: 115}
-      name: pov
+      name: role
       type: number
-    - admin_ui: {order: 7, width: 95}
-      name: ineq
-      type: number
-    - admin_ui: {order: 8, width: 98}
-      name: fut
-      type: number
-    - admin_ui: {order: 9, width: 200}
+    - admin_ui: {order: 9, width: 63}
       name: reg
       type: string
     server: full
