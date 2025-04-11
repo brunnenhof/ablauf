@@ -42,7 +42,7 @@ db_schema:
       name: next_gm
       type: number
     - admin_ui: {order: 6, width: 115}
-      name: role
+      name: roles_avail
       type: number
     - admin_ui: {order: 9, width: 63}
       name: reg

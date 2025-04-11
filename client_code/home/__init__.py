@@ -40,7 +40,7 @@ class home(homeTemplate):
     if how_many_new > 1:
       self.card_top.visible = False
       self.card_select_game_to_join.visible = True
-      self.select_game.items = [(row["game_id"], row) for row in app_tables.status.search(closed=0, current_gm =0, reg='nix')]
+      self.select_game.items = [(row["game_id"], row) for row in app_tables.status.search(closed=0, current_gm =0, roles_avail=1)]
     elif how_many_new == 1:
       row = app_tables.status.get(closed=0)
       alert(row['game_id'], title="You are joining: ")
@@ -70,11 +70,20 @@ class home(homeTemplate):
     if self.rb_ineq.selected: return 1
 
   def all_roles_taken_for_region(self, cid, reg):
-    
-    pass
+    rows = len(app_tables.roles_taken.search(game_id=cid, reg=reg, taken=0))
+    if rows == 0:
+      return True
+    else:
+      return False
 
-  def all_roles_taken_for_game(self, **event_args):
-    pass
+  def all_roles_taken_for_game(self, cid, reg):
+    for re in my_globs.regs:
+      re_taken = self.all_roles_taken_for_region(self, cid, reg)
+      if not re_taken:
+        return False
+    up = app_tables.status.get(game_id=cid)
+    up.update(roles_avail=0)
+    return True
     
   def btn_reg_role_chosen_click(self, **event_args):
     """Update status and my_globs"""
@@ -82,5 +91,6 @@ class home(homeTemplate):
     which_role = self.get_role()
     row = app_tables.roles_taken.get(game_id=my_globs.my_game_id, reg=which_reg, role_nbr=which_role)
     row.update(taken = 1)
+    self.all_roles_taken_for_game(my_globs.my_game_id, which_reg)
     ### make personal game_id, save in globals, display
     pass
