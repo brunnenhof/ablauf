@@ -1,12 +1,50 @@
 allow_embedding: false
+db_schema:
+  status:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 104}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 98}
+      name: closed
+      type: number
+    - admin_ui: {order: 2, width: 143}
+      name: current_p
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: next_p
+      type: number
+    - admin_ui: {order: 4, width: 200}
+      name: current_gm
+      type: number
+    - admin_ui: {order: 5, width: 200}
+      name: next_gm
+      type: number
+    - admin_ui: {order: 6, width: 200}
+      name: pov
+      type: number
+    - admin_ui: {order: 7, width: 95}
+      name: ineq
+      type: number
+    - admin_ui: {order: 8, width: 98}
+      name: fut
+      type: number
+    server: full
+    title: status
 dependencies: []
-name: M3 App 1
-package_name: M3_App_1
+metadata: {logo_img: 'asset:globe.png', title: Game Ablauf}
+name: Ablauf
+package_name: Ablauf
 renamed: true
 runtime_options:
   client_version: '3'
   server_spec: {base: python310-minimal}
   server_version: python3-sandbox
   version: 2
-services: []
-startup_form: Form1
+services:
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/tables.yml
+startup: {module: home, type: form}
+startup_form: null

@@ -1,9 +1,11 @@
 unique_ids:
   assets:
+    globe.png: '1744357769984561714940889.4702'
     standard-page.html: CWJFSHS7P5BTXJQIHE27KNHS5ALOX4A4
     theme.css: GEQF4E3DI6EVPCARI7QLPUTURVN7BPZN
   forms:
-    Form1: VZT4XGED6EXZYCVCM64LMQCOLFAWRUNX
+    home: VZT4XGED6EXZYCVCM64LMQCOLFAWRUNX
   modules: {}
   scripts: {}
-  server_modules: {}
+  server_modules:
+    ServerModule1: '174435767322967287144631.29115'
