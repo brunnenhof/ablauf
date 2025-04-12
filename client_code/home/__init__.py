@@ -16,7 +16,7 @@ class home(homeTemplate):
     self.rb_af.text = my_globs.regs[1]
     # Any code you write here will run before the form opens.
 
-  def btn_start_click(self, **event_args):
+  def btn_start_click2(self, **event_args):
     print('ok1')
     game_id = anvil.server.call('generate_id')
     # for all regs being played !!!
@@ -50,7 +50,7 @@ class home(homeTemplate):
           self.rb_fut.visible = False
     pass
     
-  def btn_join_click(self, **event_args):
+  def btn_join_click2(self, **event_args):
     #no_game = app_tables.status.has_row()
     print('btn_join')
     how_many_new = len(app_tables.status.search(closed=0, current_gm =0))
@@ -134,3 +134,16 @@ class home(homeTemplate):
 
   def btn_help_click(self, **event_args):
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
+
+  def btn_join_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def btn_start_click(self, **event_args):
+    print('ok2')
+    game_id = anvil.server.call('generate_id')
+    # for all regs being played !!!
+    print('ok')
+    app_tables.status.add_row(game_id=game_id,closed=0,current_gm=0,current_p=0,reg='nix',roles_avail = 1)
+    anvil.server.call('set_roles', game_id)
+    alert("Roles set up")
