@@ -17,8 +17,10 @@ class home(homeTemplate):
     # Any code you write here will run before the form opens.
 
   def btn_start_click(self, **event_args):
+    print('ok1')
     game_id = anvil.server.call('generate_id')
     # for all regs being played !!!
+    print('ok')
     app_tables.status.add_row(game_id=game_id,closed=0,current_gm=0,current_p=0,reg='nix',roles_avail = 1)
     anvil.server.call('set_roles', game_id)
     alert("Roles set up")
@@ -50,6 +52,7 @@ class home(homeTemplate):
     
   def btn_join_click(self, **event_args):
     #no_game = app_tables.status.has_row()
+    print('btn_join')
     how_many_new = len(app_tables.status.search(closed=0, current_gm =0))
     if how_many_new > 1:
       self.card_top.visible = False

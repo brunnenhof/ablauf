@@ -5,8 +5,6 @@ import anvil.server
 import random
 import string
 from . import my_globs
-import pandas as pd
-import re
 
 @anvil.server.callable
 def upload_csv_data(rows, re):
