@@ -16,6 +16,7 @@ roles = ['pov', 'ineq', 'emp', 'food', 'ener', 'fut']
 ro_nbr = [0, 1, 2, 3, 4, 5]
 regs = ['us', 'af', 'cn', 'me', 'sa', 'la', 'pa', 'ec', 'eu', 'se']
 re_nbr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+title_top_left_text = 'END-times'
 ###
 ### comment this out in production and ask interactively
 not_played_by_players = ['us', 'af', 'cn', 'sa', 'la', 'pa', 'eu', 'se']

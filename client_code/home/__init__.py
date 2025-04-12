@@ -4,6 +4,7 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+import webbrowser
 from .. import my_globs
 
 
@@ -11,7 +12,7 @@ class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    
+    self.title_top_left.text = my_globs.title_top_left_text
     self.rb_af.text = my_globs.regs[1]
     # Any code you write here will run before the form opens.
 
@@ -119,3 +120,14 @@ class home(homeTemplate):
     bbb = bb.splitlines()
     print(bbb)
     anvil.server.call('upload_csv_data', bbb, 'regs')
+
+  def btn_thanks_click(self, **event_args):
+    alert(content="... to our Alpha testers, the students in course SW101 at the Realschule Baesweiler during April 2024 taught by René Langohr, and all the beta testers.", title="Thank you", large=True)
+
+  def btn_poc_click(self, **event_args):
+    alert("Neither the user interface nor the server code is elegant nor efficient. Contact us if you can help making either or all better.",
+         title="This app is a Proof of Concept")
+
+
+  def btn_help_click(self, **event_args):
+    webbrowser.open_new("http://sdggamehelp.blue-way.net")
