@@ -6,16 +6,16 @@ import random
 import string
 from . import my_globs
 import pandas as pd
+import re
 
 @anvil.server.callable
-def upload_csv_data(dicts, rows=None):
-  if rows:
-    dicts = list(dicts)[:rows]
-  for d in dicts:
-    # d is now a dict of {columnname -> value} for this row
-    # We use Python's **kwargs syntax to pass the whole dict as
-    # keyword arguments
-    app_tables.regions.add_row(**d)
+def upload_csv_data(rows, re):
+  for r in range(1, len(rows)):
+    r = rows[r]
+    rr = r.split(",")
+    r0 = int(rr[0])
+    r5 = int(rr[5])
+    app_tables.regions.add_row(id=r0, abbr=rr[1], long=rr[2], col=rr[3], colhex=rr[4], pyidx=r5)
 
 @anvil.server.callable
 def set_roles(game_id):

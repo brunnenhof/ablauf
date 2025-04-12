@@ -3,16 +3,16 @@ db_schema:
   regions:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 110}
+    - admin_ui: {order: 0, width: 59}
       name: id
       type: number
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {order: 1, width: 85}
       name: pyidx
       type: number
     - admin_ui: {order: 2, width: 115}
       name: abbr
       type: string
-    - admin_ui: {order: 3, width: 119}
+    - admin_ui: {order: 3, width: 147}
       name: long
       type: string
     - admin_ui: {order: 4, width: 123}
