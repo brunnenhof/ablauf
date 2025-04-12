@@ -5,6 +5,17 @@ import anvil.server
 import random
 import string
 from . import my_globs
+import pandas as pd
+
+@anvil.server.callable
+def upload_csv_data(dicts, rows=None):
+  if rows:
+    dicts = list(dicts)[:rows]
+  for d in dicts:
+    # d is now a dict of {columnname -> value} for this row
+    # We use Python's **kwargs syntax to pass the whole dict as
+    # keyword arguments
+    app_tables.regions.add_row(**d)
 
 @anvil.server.callable
 def set_roles(game_id):
